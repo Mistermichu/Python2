@@ -42,19 +42,43 @@ print(item_weight)
 package_quantity = []
 
 # Obliczenie wagi paczek
+print()
 
-index = 0
+
+combined_elements = 0
 for item_number, item_number_weight in enumerate(item_weight):
-    first_item = item_weight[index]
-    if item_number < len(item_weight) - 1:
-        next_item = item_weight[index + 1]
+    if combined_elements == 0:
+        number_of_combined_elements = 1
+        first_element_index = 0
+        next_element_index = first_element_index + 1
+        first_item = item_weight[first_element_index]
+        if item_number < len(item_weight) - 1:
+            next_item = item_weight[next_element_index]
+        else:
+            next_item = 0
+        combined_elements = first_item + next_item
+        if combined_elements > 20:
+            removed_item = item_weight.pop(0)
+            package_quantity.append(removed_item)
+            combined_elements = 0
+            first_element_index = 0
+            print(f"Liczba paczek i waga: {package_quantity}")
+        else:
+            number_of_combined_elements += 1
     else:
-        next_item = 0
-    combined_elements = first_item + next_item
-    if combined_elements > 20:
-        removed_item = item_weight.pop(0)
-        package_quantity.append(removed_item)
-    else:
-
-    print(first_item)
-    print(next_item)
+        next_element_index += 1
+        first_item = combined_elements
+        if item_number < len(item_weight) - 1:
+            next_item = item_weight[next_element_index]
+        else:
+            next_item = 0
+        combined_elements = first_item + next_item
+        if combined_elements > 20:
+            del item_weight[:number_of_combined_elements]
+            package_quantity = package_quantity.append(combined_elements)
+            combined_elements = 0
+            number_of_combined_elements = 1
+            first_element_index = 0
+            print(f"Liczba paczek i waga: {package_quantity}")
+        else:
+            number_of_combined_elements += 1
