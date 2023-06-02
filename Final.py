@@ -132,3 +132,39 @@ for item_number, item_number_weight in enumerate(item_weight):
             print("Obecna waga paczki mniejsza niz 20kg. Dodawanie kolejnego przedmiotu")
             print(
                 f"Obecna liczba przedmiotow w paczce: {number_of_elements}")
+
+# Obliczenie pustych kilogramów
+
+empty_space = 0
+for package_number, empty_space_check in enumerate(package_quantity):
+    empty_space_value = 20 - empty_space_check
+    empty_space += empty_space_value
+    print(f"Paczka numer {package_number + 1}")
+    print(f"Puste kilogramy: {empty_space_value}")
+    print(f"Suma pustych kilogramow: {empty_space}")
+
+# Paczka z najwieksza iloscia pustych kilogramow
+package_min_space = min(package_quantity)
+index_package_min_space = package_quantity.index(package_min_space)
+print(
+    f"Paczka z najwieksza iloscia pustych kilogramow: {index_package_min_space + 1}")
+print(
+    f"Suma pustych kilogramow w paczce numer {index_package_min_space + 1}: {20 - package_min_space}kg")
+
+# Podsumowanie
+print("*" * 200)
+print("PODSUMOWANIE")
+print(f"*** Liczba wyslanych przedmiotow: {len(item_weight)}")
+print("*** Wagi elementow:")
+for item_number, item_weight_summary in enumerate(item_weight):
+    print(
+        f"Przedmiot numer {item_number + 1}: {round(item_weight_summary, 2)}kg")
+print(f"*** Liczba wyslanych paczek: {len(package_quantity)}")
+print("*** Wagi paczek:")
+for package_number, package_weight in enumerate(package_quantity):
+    print(f"Paczka numer {package_number + 1}: {round(package_weight, 2)}kg")
+print(f"*** Suma pustych kilogarmow: {round(empty_space, 2)}")
+print(
+    f"*** Paczka z najwieksza iloscia pustych kilogramow: {index_package_min_space + 1}")
+print(
+    f"Suma pustych kilogramow w paczce numer {index_package_min_space + 1}: {round(20 - package_min_space, 2)}kg")
