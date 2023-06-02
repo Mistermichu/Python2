@@ -39,8 +39,17 @@ for item_weight_input_number in range(item_quantity):
 print("Wyszczegolnione wagi elementow:")
 print(item_weight)
 
+package_quantity = []
+
 # Obliczenie wagi paczek
 
-for item_number, next_item in enumerate(item_weight):
-    print(f"Element: {item_number}")
+combined_elements = 0
+for item_number, item_number_weight in enumerate(item_weight):
+    first_item = item_number_weight + combined_elements
+    if item_number < len(item_weight) - 1:
+        next_item = item_weight[item_number + 1]
+    else:
+        next_item = "Brak"
+
+    print(f"Pierwszy element: {first_item}")
     print(f"Nastepny element: {next_item}")
