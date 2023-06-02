@@ -43,13 +43,18 @@ package_quantity = []
 
 # Obliczenie wagi paczek
 
-combined_elements = 0
+index = 0
 for item_number, item_number_weight in enumerate(item_weight):
-    first_item = item_number_weight + combined_elements
+    first_item = item_weight[index]
     if item_number < len(item_weight) - 1:
-        next_item = item_weight[item_number + 1]
+        next_item = item_weight[index + 1]
     else:
-        next_item = "Brak"
+        next_item = 0
+    combined_elements = first_item + next_item
+    if combined_elements > 20:
+        removed_item = item_weight.pop(0)
+        package_quantity.append(removed_item)
+    else:
 
-    print(f"Pierwszy element: {first_item}")
-    print(f"Nastepny element: {next_item}")
+    print(first_item)
+    print(next_item)
