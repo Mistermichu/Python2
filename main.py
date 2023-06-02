@@ -42,43 +42,70 @@ print(item_weight)
 package_quantity = []
 
 # Obliczenie wagi paczek
-print()
+print("*" * 80)
+print(f"Liczba elementow do wysłania: {len(item_weight)}")
+print("-" * 5)
 
 
 combined_elements = 0
 for item_number, item_number_weight in enumerate(item_weight):
+    print(f"Rozpoczeto dodawanie elementu: {item_number}")
     if combined_elements == 0:
+        print("Trwa generowanie nowej paczki")
         number_of_combined_elements = 1
         first_element_index = 0
         next_element_index = first_element_index + 1
         first_item = item_weight[first_element_index]
+        print(f"Waga pierwszego przedmiotu: {first_item}")
         if item_number < len(item_weight) - 1:
             next_item = item_weight[next_element_index]
+            print(f"Waga nastepnego przemdiotu w kolejce: {next_item}")
         else:
             next_item = 0
+            print(f"W kolejce nie ma już wiecej przedmiotow.")
         combined_elements = first_item + next_item
+        print(f"Laczna waga paczki {combined_elements}")
         if combined_elements > 20:
+            print("Waga paczki przekroczyla 20kg. Nie mozna dodac przedmiotu do paczki")
             removed_item = item_weight.pop(0)
             package_quantity.append(removed_item)
             combined_elements = 0
             first_element_index = 0
-            print(f"Liczba paczek i waga: {package_quantity}")
+            print("Utworzono paczke. Obecna ilosc paczek i waga:")
+            print(f"Ilosc paczek: {len(package_quantity)}")
+            print(f"Wyszczegolnione wagi paczek: {package_quantity}")
         else:
             number_of_combined_elements += 1
+            print("Obecna waga paczki mniejsza niz 20kg. Dodawanie kolejnego przedmiotu")
+            print(
+                f"Obecna liczba przedmiotow w paczce: {number_of_combined_elements}")
     else:
+        print("Trwa dodawanie kolejnego przedmiotu")
         next_element_index += 1
         first_item = combined_elements
+        print(f"Obecna waga paczki: {first_item}")
         if item_number < len(item_weight) - 1:
             next_item = item_weight[next_element_index]
+            print(f"Waga nastepnego przemdiotu w kolejce: {next_item}")
         else:
             next_item = 0
+            print(f"W kolejce nie ma już wiecej przedmiotow.")
         combined_elements = first_item + next_item
+        print(f"Laczna waga paczki {combined_elements}")
         if combined_elements > 20:
+            print("Waga paczki przekroczyla 20kg. Nie mozna dodac przedmiotu do paczki")
             del item_weight[:number_of_combined_elements]
             package_quantity = package_quantity.append(combined_elements)
+            print(
+                f"Dodano {number_of_combined_elements} elementow do paczki. Laczna waga dodanych przedmiotow: {combined_elements}")
             combined_elements = 0
             number_of_combined_elements = 1
             first_element_index = 0
-            print(f"Liczba paczek i waga: {package_quantity}")
+            print("Utworzono paczke. Obecna ilosc paczek i waga:")
+            print(f"Ilosc paczek: {len(package_quantity)}")
+            print(f"Wyszczegolnione wagi paczek: {package_quantity}")
         else:
             number_of_combined_elements += 1
+            print("Obecna waga paczki mniejsza niz 20kg. Dodawanie kolejnego przedmiotu")
+            print(
+                f"Obecna liczba przedmiotow w paczce: {number_of_combined_elements}")
